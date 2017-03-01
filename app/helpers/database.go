@@ -14,12 +14,6 @@ func OpenDb() *sql.DB{
     if err != nil{
         panic(err.Error())
     }
-    // defer db.Close()
-
-    // err = db.Ping()
-    // if err != nil{
-    //     panic(err.Error())
-    // }
 
     return db
 }
