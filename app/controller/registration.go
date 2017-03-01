@@ -13,4 +13,9 @@ func (registration Registration) Index(response http.ResponseWriter, request *ht
 		http.ServeFile(response, request, "views/register.html")
 		return
 	}
+
+	username := request.FormValue("username")
+    password := request.FormValue("password")
+
+    fmt.Println(username)
 }

@@ -8,6 +8,6 @@ import (
 func Initialize() {
 	registration := controller.Registration {}
 
-	http.HandleFunc("/signup", registration.Index)
+	http.HandleFunc("/registration", registration.Index)
 	http.ListenAndServe(":8080", nil)
 }
