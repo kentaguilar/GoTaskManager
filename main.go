@@ -10,6 +10,13 @@ import "net/http"
 var db *sql.DB
 var err error
 
+func dashboardPage(res http.ResponseWriter, req *http.Request){
+    if req.Method != "POST"{
+        http.ServeFile(res, req, "views/dashboard.html")
+        return
+    }
+}
+
 func signupPage(res http.ResponseWriter, req *http.Request){
     if req.Method != "POST"{
         http.ServeFile(res, req, "views/signup.html")
@@ -80,7 +87,8 @@ func homePage(res http.ResponseWriter, req *http.Request){
 }
 
 func main(){
-    db, err = sql.Open("mysql", "<dbusername>:<dbpassword>@/<databasename>")
+    // db, err = sql.Open("mysql", "<dbusername>:<dbpassword>@/<databasename>")
+    db, err = sql.Open("mysql", "root:@/godb")
     if err != nil{
         panic(err.Error())
     }
@@ -93,6 +101,8 @@ func main(){
 
     http.HandleFunc("/signup", signupPage)
     http.HandleFunc("/login", loginPage)
+    http.HandleFunc("/dashboard", dashboardPage)
     http.HandleFunc("/", homePage)
+    
     http.ListenAndServe(":8080", nil)
 }
