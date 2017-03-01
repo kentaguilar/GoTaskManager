@@ -1,7 +1,6 @@
 package controller
 
 import (
-	// "fmt"
 	"net/http"
 	"../helpers"
 	"../models"	
@@ -24,10 +23,10 @@ func (registration Registration) Index(response http.ResponseWriter, request *ht
 
 	fullname := request.FormValue("name")
 	username := request.FormValue("username")
-    password := request.FormValue("password")
+	password := request.FormValue("password")
 
-    user := model.User{ fullname, username, password }
-    output := user.SaveUser()
+	user := model.User{ fullname, username, password }
+	output := user.SaveUser()
 
-    response.Write([]byte(output))
+	response.Write([]byte(output))
 }

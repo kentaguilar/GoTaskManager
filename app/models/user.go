@@ -1,7 +1,6 @@
 package model
 
 import (
-    // "fmt"
 	"../helpers"
 	"golang.org/x/crypto/bcrypt"
 )
