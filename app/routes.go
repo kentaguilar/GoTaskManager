@@ -6,10 +6,10 @@ import (
 )
 
 func Initialize() {
-	registration := controller.Registration{ "Sign-up Now" }
 	public := controller.Public{ "Main Page" }
+	task := controller.Task{ "Task Page" }
 
-	http.HandleFunc("/register", registration.Index)
+	http.HandleFunc("/task", task.ModifyOrDeleteTask)
 	http.HandleFunc("/", public.Index)
 	http.ListenAndServe(":8080", nil)
 }

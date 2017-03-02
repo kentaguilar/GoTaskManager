@@ -12,7 +12,7 @@ const(
     FOOTERTEMPLATE = "app/views/layouts/footer.tpl"
 )
 
-func RenderPage(response http.ResponseWriter, targetTemplate string) *template.Template{
+func RenderPage(response http.ResponseWriter, targetTemplate string) *template.Template {
 	content := path.Join("app", "views", targetTemplate)
 
 	tmpl, err := template.ParseFiles(content, HEADERTEMPLATE, FOOTERTEMPLATE)
