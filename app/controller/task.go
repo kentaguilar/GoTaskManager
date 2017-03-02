@@ -36,14 +36,14 @@ func (task Task) ModifyOrDeleteTask(response http.ResponseWriter, request *http.
 	requestType := request.FormValue("type")
 
 	newTask := model.Task{ id, name, description }
-	output = ""
+	output := ""
 
 	if requestType == "new" {
-		output := newTask.SaveTask()
-	} else if{
-		output := newTask.UpdateTask()
-	} else{
-		output := newTask.DeleteTask()
+		output = newTask.SaveTask()
+	} else if requestType == "update" {
+		output = newTask.UpdateTask()
+	} else {
+		output = newTask.DeleteTask()
 	}
 
 	js, err := json.Marshal(output)
