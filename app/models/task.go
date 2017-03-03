@@ -25,6 +25,10 @@ func (givenTask *Task) SaveTask() string{
     return message
 }
 
+func (givenTask *Task) GetAllTasks() {
+    
+}
+
 func (givenTask *Task) UpdateTask() string{
     db := helper.OpenDb()
 
