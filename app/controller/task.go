@@ -29,6 +29,12 @@ func (task Task) Index(response http.ResponseWriter, request *http.Request) {
 	}
 }
 
+func (task Task) GetAllTasks(response http.ResponseWriter, request *http.Request) {
+	existingTask := model.Task {}
+
+	existingTask.ListTasks()
+}
+
 func (task Task) ModifyOrDeleteTask(response http.ResponseWriter, request *http.Request) {
 	name := request.FormValue("name")
 	description := request.FormValue("description")
