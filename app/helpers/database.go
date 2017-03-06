@@ -9,7 +9,7 @@ var db *sql.DB
 var err error
 
 func OpenDb() *sql.DB{
-	db, err = sql.Open("mysql", "root:@/godb")
+	db, err = sql.Open("mysql", "root:@/gotask")
     if err != nil{
         panic(err.Error())
     }

@@ -1,3 +1,12 @@
+.task-content{
+	width:600px;margin:0 auto;text-align:center
+}
+
+#txttask{
+	font-size:20px;
+	padding:20px;
+}
+
 .task-list{
 	margin-top:20px;
 	border-radius:3px;
@@ -10,8 +19,19 @@
 	padding:15px;
 	border-bottom:1px solid #ccc;
 	text-align:left;
+	font-size:19px;
 }
 
 .task-list div:last-child{
 	border-bottom:none;
+}
+
+.task-list div i{
+	cursor: pointer;	
+	margin-top:5px;
+}
+
+.task-list div i:first-child+i{
+	margin-right:6px;
+	margin-top:7px;
 }

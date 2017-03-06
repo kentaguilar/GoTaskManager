@@ -1,7 +1,7 @@
 {{ define "task_template" }}
     {{ template "header" }}
 
-    <div style="width:600px;margin:0 auto;text-align:center">
+    <div class="task-content">
     	<h2>{{ .Title }}</h2> <br/>
     	<input type="text" id="txttask" class="form-control" placeholder="Add your task here" />
 

@@ -21,7 +21,6 @@ var (
     name string
 )
 
-
 func (task Task) Index(response http.ResponseWriter, request *http.Request) {
 	if request.Method != "POST" {
 		view := helper.RenderPage(response, "task.tpl")
@@ -51,11 +50,10 @@ func (task Task) GetAllTasks(response http.ResponseWriter, request *http.Request
 
 func (task Task) ModifyOrDeleteTask(response http.ResponseWriter, request *http.Request) {
 	name := request.FormValue("name")
-	description := request.FormValue("description")
 	id := request.FormValue("id")
 	requestType := request.FormValue("type")
 
-	newTask := model.Task{ id, name, description }
+	newTask := model.Task{ id, name }
 	output := ""
 
 	if requestType == "new" {

@@ -8,13 +8,11 @@ import (
 type Task struct {
     Id string
 	Name string
-	Description string
 }
 
 var (
     id string
     name string
-    description string
 )
 
 func (givenTask *Task) SaveTask() string{
@@ -22,7 +20,7 @@ func (givenTask *Task) SaveTask() string{
 
     message := "Success"
 
-    _, err := db.Exec("insert into tasks(name, description) values(?, ?)", givenTask.Name, givenTask.Description)
+    _, err := db.Exec("insert into tasks(name) values(?)", givenTask.Name)
     if err != nil{
         message = "Server error, unable to create record"
     }
@@ -35,7 +33,7 @@ func (givenTask *Task) SaveTask() string{
 func (givenTask *Task) ListTasks() []Task{
     db := helper.OpenDb();
 
-    rows, err := db.Query("select * from tasks")
+    rows, err := db.Query("select * from tasks order by 1 desc")
     if err != nil {
         log.Fatal(err)
     }
@@ -43,12 +41,12 @@ func (givenTask *Task) ListTasks() []Task{
     taskList := []Task{}
 
     for rows.Next() {
-        err := rows.Scan(&id, &name, &description)
+        err := rows.Scan(&id, &name)
         if err != nil {
             log.Fatal(err)
         }
 
-        taskList = append(taskList, Task{id, name, description})
+        taskList = append(taskList, Task{id, name})
     }
 
     err = rows.Err()
@@ -64,7 +62,7 @@ func (givenTask *Task) UpdateTask() string{
 
     message := "Success"
 
-    _, err := db.Exec("update tasks set name=?,description=? where id=?", givenTask.Name, givenTask.Description, givenTask.Id)
+    _, err := db.Exec("update tasks set name=? where id=?", givenTask.Name, givenTask.Id)
     if err != nil{
         message = "Server error, unable to create record"
     }

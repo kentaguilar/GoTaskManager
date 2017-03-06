@@ -13,6 +13,7 @@ func Initialize() {
 	chttp.Handle("/", http.FileServer(http.Dir("./")))
 
 	http.HandleFunc("/tasks", task.GetAllTasks)
+	http.HandleFunc("/crud", task.ModifyOrDeleteTask)
 	http.HandleFunc("/", HomePageHandler)
 	http.ListenAndServe(":8080", nil)
 }
