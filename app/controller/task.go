@@ -16,6 +16,11 @@ type Profile struct {
   Hobbies []string
 }
 
+var (
+    id string
+    name string
+)
+
 
 func (task Task) Index(response http.ResponseWriter, request *http.Request) {
 	if request.Method != "POST" {
@@ -32,7 +37,16 @@ func (task Task) Index(response http.ResponseWriter, request *http.Request) {
 func (task Task) GetAllTasks(response http.ResponseWriter, request *http.Request) {
 	existingTask := model.Task {}
 
-	existingTask.ListTasks()
+	taskList := existingTask.ListTasks()
+
+	js, err := json.Marshal(taskList)
+	if err != nil {
+		http.Error(response, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	response.Header().Set("Content-Type", "application/json")
+	response.Write(js)
 }
 
 func (task Task) ModifyOrDeleteTask(response http.ResponseWriter, request *http.Request) {

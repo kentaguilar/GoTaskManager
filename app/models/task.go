@@ -1,8 +1,7 @@
 package model
 
 import (
-    "log"
-    "fmt"
+    "log"    
 	"../helpers"
 )
 
@@ -15,6 +14,7 @@ type Task struct {
 var (
     id string
     name string
+    description string
 )
 
 func (givenTask *Task) SaveTask() string{
@@ -32,27 +32,31 @@ func (givenTask *Task) SaveTask() string{
     return message
 }
 
-func (givenTask *Task) ListTasks() {
+func (givenTask *Task) ListTasks() []Task{
     db := helper.OpenDb();
 
-    rows, err := db.Query("select id, name from tasks")
+    rows, err := db.Query("select * from tasks")
     if err != nil {
         log.Fatal(err)
     }
 
+    taskList := []Task{}
+
     for rows.Next() {
-        err := rows.Scan(&id, &name)
+        err := rows.Scan(&id, &name, &description)
         if err != nil {
             log.Fatal(err)
         }
 
-        fmt.Println(id, name)
+        taskList = append(taskList, Task{id, name, description})
     }
 
     err = rows.Err()
     if err != nil {
         log.Fatal(err)    
     }
+
+    return taskList
 }
 
 func (givenTask *Task) UpdateTask() string{
